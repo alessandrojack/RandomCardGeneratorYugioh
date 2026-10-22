@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="847.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.randomcardgenerator.controller.CardOverviewController">
+    <top>
+        <MenuBar BorderPane.alignment="CENTER">
+            <menus>
+                <Menu mnemonicParsing="false" text="File">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#handleUpdateCardData" text="Update Card Data" />
+                        <MenuItem mnemonicParsing="false" text="Close" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Edit">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Delete" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="About" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+    </top>
+    <center>
+        <AnchorPane prefHeight="900.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
+            <children>
+                <SplitPane dividerPositions="0.35" prefHeight="900.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <items>
+
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="898.0" prefWidth="300.0">
+                            <children>
+                                <StackPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <children>
+
+                                        <TableView fx:id="cardTable" prefHeight="899.0" prefWidth="294.0">
+                                            <columns>
+                                                <TableColumn fx:id="nameColumn" prefWidth="75.0" text="Card Name" />
+                                                <TableColumn fx:id="typeColumn" prefWidth="75.0" text="Card Type" />
+                                            </columns>
+                                            <columnResizePolicy>
+                                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                            </columnResizePolicy>
+                                        </TableView>
+
+                                        <VBox fx:id="randomListPane" alignment="TOP_CENTER" spacing="10.0" visible="false" style="-fx-background-color: #f4f4f4;">
+                                            <children>
+                                                <Label text="Carte Estratte" style="-fx-font-weight: bold; -fx-font-size: 14px;">
+                                                    <VBox.margin>
+                                                        <Insets top="10.0" />
+                                                    </VBox.margin>
+                                                </Label>
+
+                                                <ScrollPane fitToWidth="true" style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS">
+                                                    <content>
+                                                        <FlowPane fx:id="randomImagesContainer" hgap="10.0" vgap="10.0" alignment="TOP_CENTER" style="-fx-padding: 10;" />
+                                                    </content>
+                                                </ScrollPane>
+
+                                                <VBox spacing="10.0" alignment="TOP_CENTER">
+                                                    <VBox.margin>
+                                                        <Insets bottom="10.0" left="10.0" right="10.0" />
+                                                    </VBox.margin>
+                                                    <children>
+                                                        <Button text="Export .ydk" onAction="#handleExportYdk"
+                                                                maxWidth="Infinity"
+                                                                style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-cursor: hand;"/>
+
+                                                        <Button text="Aggiungi Carte..." onAction="#handleAddRandomCards"
+                                                                maxWidth="Infinity"
+                                                                style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-cursor: hand;"/>
+
+                                                        <Button text="Reset / Indietro" onAction="#handleResetList"
+                                                                maxWidth="Infinity"
+                                                                style="-fx-base: #ffcccc; -fx-cursor: hand;"/>
+                                                    </children>
+                                                </VBox>
+                                            </children>
+                                        </VBox>
+
+                                    </children>
+                                </StackPane>
+                            </children>
+                        </AnchorPane>
+
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="819.0" prefWidth="698.0">
+                            <children>
+                                <Label layoutX="1.0" prefHeight="34.0" prefWidth="450.0" text="Selected Card Details" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
+
+                                <ImageView fx:id="cardImageView" fitHeight="400.0" fitWidth="250.0" layoutX="280.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="240.0" AnchorPane.rightAnchor="240.0" AnchorPane.topAnchor="50.0" />
+
+                                <GridPane prefHeight="300.0" prefWidth="690.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="470.0">
+                                    <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="10.0" prefWidth="120.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="250.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="320.0" />
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="90.0" vgrow="SOMETIMES" />
+                                    </rowConstraints>
+                                    <children>
+                                        <Label text="Card Name" />
+                                        <Label text="Card Type" GridPane.rowIndex="1" />
+                                        <Label text="Attribute" GridPane.rowIndex="2" />
+                                        <Label text="Level" GridPane.rowIndex="3" />
+                                        <Label text="Race/Type" GridPane.rowIndex="4" />
+                                        <Label text="ATK/DEF" GridPane.rowIndex="5" />
+                                        <Label text="Description" GridPane.rowIndex="6" />
+
+                                        <Label fx:id="nameLabel" text="[Card Detail]" GridPane.columnIndex="1" />
+                                        <Label fx:id="typeLabel" text="[Card Detail]" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                        <Label fx:id="attributeLabel" text="[Card Detail]" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                        <Label fx:id="levelLabel" text="[Card Detail]" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                        <Label fx:id="raceLabel" text="[Card Detail]" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                        <Label fx:id="atkDefLabel" text="[Card Detail]" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                        <TextArea fx:id="descLabel" editable="false" wrapText="true" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="6" />
+                                    </children>
+                                </GridPane>
+
+                                <HBox spacing="10.0" alignment="BOTTOM_RIGHT" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
+                                    <children>
+                                        <Button fx:id="filterButton" onAction="#handleOpenFilterWindow" text="Filter..." prefHeight="30.0" />
+                                        <Button onAction="#handleRandomCard" text="Randomize New" prefHeight="30.0" minWidth="-Infinity" />
+                                    </children>
+                                </HBox>
+
+                                <Label layoutX="660.0" layoutY="-4.0" text="V7.21" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                            </children>
+                        </AnchorPane>
+                    </items>
+                </SplitPane>
+            </children>
+        </AnchorPane>
+    </center>
+</BorderPane>
