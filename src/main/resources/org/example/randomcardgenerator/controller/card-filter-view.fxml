@@ -19,7 +19,7 @@
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
 
-    <Label style="-fx-font-weight: bold; -fx-font-size: 16pt;" text="Set Search Filters" />
+    <Label style="-fx-font-weight: bold; -fx-font-size: 16pt;" text="Card Filters" />
 
     <GridPane hgap="20" vgap="20">
         <columnConstraints>
@@ -46,25 +46,25 @@
         <Label text="Attribute" GridPane.columnIndex="0" GridPane.rowIndex="2" />
         <MenuButton fx:id="attributeFilterField" maxWidth="Infinity" text="Select Attributes..." GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
-        <Label text="Level (num.)" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+        <Label text="Level (Number)" GridPane.columnIndex="0" GridPane.rowIndex="3" />
         <TextField fx:id="levelFilterField" promptText="E.g., 4, gt7, le8" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
         <Label text="Race/Type" GridPane.columnIndex="0" GridPane.rowIndex="4" />
         <MenuButton fx:id="raceFilterField" maxWidth="Infinity" text="Select Races..." GridPane.columnIndex="1" GridPane.rowIndex="4" />
 
         <Label text="Effect Keyword" GridPane.columnIndex="0" GridPane.rowIndex="5" />
-        <TextField fx:id="descFilterField" promptText="Keyword in effect" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+        <TextField fx:id="descFilterField" promptText="Keyword in card text" GridPane.columnIndex="1" GridPane.rowIndex="5" />
 
-        <Label text="From Expansion" GridPane.columnIndex="0" GridPane.rowIndex="6" />
-        <SearchableComboBox fx:id="setFromField" maxWidth="Infinity" promptText="Released after..." GridPane.columnIndex="1" GridPane.rowIndex="6" />
+        <Label text="From Set" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+        <SearchableComboBox fx:id="setFromField" maxWidth="Infinity" promptText="Select starting set..." GridPane.columnIndex="1" GridPane.rowIndex="6" />
 
-        <Label text="To Expansion" GridPane.columnIndex="0" GridPane.rowIndex="7" />
-        <SearchableComboBox fx:id="setToField" maxWidth="Infinity" promptText="Released before..." GridPane.columnIndex="1" GridPane.rowIndex="7" />
+        <Label text="To Set" GridPane.columnIndex="0" GridPane.rowIndex="7" />
+        <SearchableComboBox fx:id="setToField" maxWidth="Infinity" promptText="Select ending set..." GridPane.columnIndex="1" GridPane.rowIndex="7" />
     </GridPane>
 
     <ButtonBar prefHeight="40.0" prefWidth="200.0">
         <buttons>
-            <Button defaultButton="true" onAction="#handleApplyFilter" text="Apply Filter" />
+            <Button defaultButton="true" onAction="#handleApplyFilter" text="Apply Filters" />
         </buttons>
     </ButtonBar>
 </VBox>

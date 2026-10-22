@@ -2,12 +2,11 @@ package org.example.randomcardgenerator.view;
 
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import org.example.randomcardgenerator.card.Card;
 import org.example.randomcardgenerator.service.ImageService;
 
-import java.io.File;
+import javafx.scene.control.Tooltip;
 
 public class CardPresenter {
     private final Label nameLabel;
@@ -19,6 +18,7 @@ public class CardPresenter {
     private final TextArea descLabel;
     private final ImageView cardImageView;
     private final ImageService imageService;
+    private final Tooltip imageStatus = new Tooltip();
 
     // Dependency Injection dei componenti UI
     public CardPresenter(Label nameLabel, Label typeLabel, Label attributeLabel,
@@ -33,6 +33,7 @@ public class CardPresenter {
         this.descLabel = descLabel;
         this.cardImageView = cardImageView;
         this.imageService = imageService;
+        Tooltip.install(cardImageView, imageStatus);
     }
 
     public void clear() {
@@ -43,7 +44,8 @@ public class CardPresenter {
         levelLabel.setText("");
         atkDefLabel.setText("");
         descLabel.setText("");
-        cardImageView.setImage(null);
+        imageService.clearImage(cardImageView);
+        imageStatus.setText("");
     }
 
     public void display(Card card) {
@@ -63,12 +65,8 @@ public class CardPresenter {
         atkDefLabel.setText((card.getAtk() >= 0) ? "ATK: " + card.getAtk() + " / DEF: " + card.getDef() : "N/A");
         descLabel.setText(card.getDesc());
 
-        // Gestione immagine
-        File imgFile = imageService.getLocalImageFile(card.getImageId());
-        if (imgFile.exists()) {
-            cardImageView.setImage(new Image(imgFile.toURI().toString()));
-        } else {
-            cardImageView.setImage(null);
-        }
+        imageService.loadInto(cardImageView, card.getImageId(), message -> {
+            imageStatus.setText(message.isEmpty() ? card.getName() : message);
+        });
     }
 }

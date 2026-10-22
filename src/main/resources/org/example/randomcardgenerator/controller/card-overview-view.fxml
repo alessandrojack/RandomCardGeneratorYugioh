@@ -68,7 +68,7 @@
 
                                         <VBox fx:id="randomListPane" alignment="TOP_CENTER" spacing="10.0" visible="false" style="-fx-background-color: #f4f4f4;">
                                             <children>
-                                                <Label text="Carte Estratte" style="-fx-font-weight: bold; -fx-font-size: 14px;">
+                                                <Label text="Drawn Cards" style="-fx-font-weight: bold; -fx-font-size: 14px;">
                                                     <VBox.margin>
                                                         <Insets top="10.0" />
                                                     </VBox.margin>
@@ -89,11 +89,11 @@
                                                                 maxWidth="Infinity"
                                                                 style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-cursor: hand;"/>
 
-                                                        <Button text="Aggiungi Carte..." onAction="#handleAddRandomCards"
+                                                        <Button text="Add Cards..." onAction="#handleAddRandomCards"
                                                                 maxWidth="Infinity"
                                                                 style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-cursor: hand;"/>
 
-                                                        <Button text="Reset / Indietro" onAction="#handleResetList"
+                                                        <Button text="Back to Card List" onAction="#handleResetList"
                                                                 maxWidth="Infinity"
                                                                 style="-fx-base: #ffcccc; -fx-cursor: hand;"/>
                                                     </children>
@@ -149,7 +149,7 @@
                                 <HBox spacing="10.0" alignment="BOTTOM_RIGHT" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
                                     <children>
                                         <Button fx:id="filterButton" onAction="#handleOpenFilterWindow" text="Filter..." prefHeight="30.0" />
-                                        <Button onAction="#handleRandomCard" text="Randomize New" prefHeight="30.0" minWidth="-Infinity" />
+                                        <Button onAction="#handleRandomCard" text="Draw Cards..." prefHeight="30.0" minWidth="-Infinity" />
                                     </children>
                                 </HBox>
 

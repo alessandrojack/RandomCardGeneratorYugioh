@@ -4,10 +4,11 @@ import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.layout.StackPane;
+import javafx.geometry.Pos;
 import javafx.stage.FileChooser;
 import org.example.randomcardgenerator.card.Card;
 import org.example.randomcardgenerator.service.DialogService;
@@ -173,17 +174,38 @@ public class CardOverviewController {
             iv.setPreserveRatio(true);
             iv.setStyle("-fx-cursor: hand; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 5, 0, 0, 0);");
 
-            File imgFile = imageService.getLocalImageFile(card.getImageId());
-            if (imgFile.exists()) {
-                iv.setImage(new Image(imgFile.toURI().toString()));
-            }
+            iv.setFitHeight(116);
 
-            Tooltip.install(iv, new Tooltip(card.getName()));
+            Label placeholder = new Label("Caricamento...");
+            placeholder.setWrapText(true);
+            placeholder.setMaxWidth(76);
+            placeholder.setStyle("-fx-font-size: 10px; -fx-text-alignment: center;");
 
-            // Al click sull'immagine, mostra la carta nel pannello di destra
-            iv.setOnMouseClicked(e -> cardPresenter.display(card));
+            StackPane imageSlot = new StackPane(iv, placeholder);
+            imageSlot.setMinSize(80, 116);
+            imageSlot.setPrefSize(80, 116);
+            imageSlot.setMaxSize(80, 116);
+            imageSlot.setStyle("-fx-background-color: #eeeeee; -fx-border-color: #cccccc;");
 
-            randomImagesContainer.getChildren().add(iv);
+            Label name = new Label(card.getName());
+            name.setWrapText(true);
+            name.setMaxWidth(80);
+            name.setStyle("-fx-font-size: 10px; -fx-text-alignment: center;");
+
+            VBox tile = new VBox(4, imageSlot, name);
+            tile.setAlignment(Pos.TOP_CENTER);
+            tile.setMinWidth(80);
+            tile.setPrefWidth(80);
+            tile.setMaxWidth(80);
+            tile.setStyle("-fx-cursor: hand;");
+            Tooltip.install(tile, new Tooltip(card.getName() + " (ID: " + card.getImageId() + ")"));
+            tile.setOnMouseClicked(e -> cardPresenter.display(card));
+            randomImagesContainer.getChildren().add(tile);
+
+            imageService.loadInto(iv, card.getImageId(), message -> {
+                placeholder.setText(message);
+                placeholder.setVisible(!message.isEmpty());
+            });
         }
     }
 }

@@ -83,7 +83,7 @@ public class DataService {
 
     // --- API Pubblica per il Controller (Da collegare al tuo TASTO AGGIORNA) ---
     public void updateCardDataFromApi() throws IOException {
-        updater.checkForUpdates();
+        updater.updateDatabaseOnRequest();
     }
 
     // --- Metodo Helper per convertire la riga SQL in un oggetto Card ---
