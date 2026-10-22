@@ -81,7 +81,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                org.example.randomcardgenerator/org.example.randomcardgenerator.HelloApplication
+                                org.example.randomcardgenerator/org.example.randomcardgenerator.Launcher
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
