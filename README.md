@@ -54,4 +54,4 @@ On the first launch, Maven will automatically download the required dependencies
 
 ## Author
 
-Developed by [alessandrojack](https://github.com/alessandrojack).
+Developed (vibecoded) by [alessandrojack](https://github.com/alessandrojack).
